@@ -1,12 +1,18 @@
-import { defineNitroConfig } from 'nitropack'
+import { defineNitroConfig } from 'nitropack/config'
 
 export default defineNitroConfig({
   srcDir: 'src',
   noPublicDir: true,
+  errorHandler: '~/errorHandler',
+
+  routeRules: {
+    '/api/**': { cors: true },
+  },
+
   imports: {
-    dts: './.nitro/types/nitro.d.ts',
-    dirs: [
-      './src/utils/**',
+    dirs: ['./src/composables/**'],
+    presets: [
+      { from: 'zod', imports: ['z'] },
     ],
   },
 })

@@ -1,22 +1,24 @@
 {
   "private": true,
   "scripts": {
-    "dev": "nitropack dev",
-    "build": "nitropack build",
+    "dev": "prisma generate && nitropack dev",
+    "build": "prisma generate && nitropack build",
     "preview": "node .output/server/index.mjs",
+    "postinstall": "nitropack prepare",
     "lint": "eslint . --fix"
   },
   "dependencies": {
-    "@prisma/client": "^4.7.1",
-    "h3": "^1.0.1",
-    "h3-zod": "^0.3.10",
-    "zod": "^3.19.1"
+    "@prisma/client": "^4.16.2",
+    "h3": "^1.7.1",
+    "h3-zod": "^0.5.1",
+    "zod": "^3.21.4"
   },
   "devDependencies": {
-    "@antfu/eslint-config-ts": "^0.33.1",
-    "eslint": "^8.29.0",
-    "nitropack": "^1.0.0",
-    "prisma": "^4.7.1",
-    "typescript": "^4.9.3"
+    "@antfu/eslint-config-ts": "^0.39.7",
+    "@types/node": "^18.16.19",
+    "eslint": "^8.44.0",
+    "nitropack": "^2.5.2",
+    "prisma": "^4.16.2",
+    "typescript": "^5.1.6"
   }
 }
