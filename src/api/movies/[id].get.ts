@@ -1,12 +1,10 @@
-import { useValidatedParams } from 'h3-zod'
-
 export default defineEventHandler(async (event) => {
-  const { id } = await useValidatedParams(event, { id: z.coerce.number() })
+  const { id } = await getValidatedRouterParams(event, z.object({ id: z.coerce.number() }).parse)
 
   const movie = await prisma.movie.findUnique({ where: { id } })
 
   if (!movie)
-    throw NotFound('MOVIE NOT FOUND')
+    throw createError({ statusCode: 400, statusMessage: "Movie not found." })
 
   return movie
 })
